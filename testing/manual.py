@@ -23,6 +23,11 @@ def main():
     print(H_fd)
     print(T)
 
+    #call haskell function
+
+    #create circuit
+
+
 def diagonal(mat):
     e = eig(mat)[1].transpose()
 
