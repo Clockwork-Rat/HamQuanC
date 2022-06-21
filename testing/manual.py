@@ -1,5 +1,4 @@
 import numpy as np
-import scipy.linalg as sla
 from numpy.linalg import eig, inv
 
 
@@ -32,7 +31,7 @@ def diagonal(mat):
     e = eig(mat)[1].transpose()
 
     diag = e * mat * inv(e)
-    print( e * inv(e))
+    print( e * inv(e) )
 
     return e, np.diag(np.diag(diag))
 
