@@ -11,13 +11,16 @@ _debug = False
 
 def unitary(filename: str):
     #load data in
-    h = np.genfromtxt(filename)
+    #h = np.genfromtxt(filename, delimeter=',')
+    h = np.loadtxt(file=filename, delimeter=",")
     print(h)
     #generate diaganol to check
     e = eig(h)[1].transpose()
+    v = eig(h)[0]
+    print(v)
     diag = e * h * inv(e)
     
-    #print diaganol for debug
+    #print diaganal for debug
     if _debug:
         print(diag)
         print("Identity matrix")
@@ -25,6 +28,34 @@ def unitary(filename: str):
 
     #return unitary transpoition
     return e.transpose()
+
+def _unitary(mtrx: np.matrix):
+    e = eig(mtrx)[1].transpose()
+    #diag = e * mtrx * inv(e)
+
+    return e.transpose()
+
+def m_unitary(filename: str, size: int):
+    h = np.genfromtxt(filename, delimiter=",")
+    #print(h)
+    
+    ret = []
+    out_tmp = []
+
+    for i in range(len(h)):
+        temp = []
+        if(i + size < len(h)):
+            for j in range(size):
+                #print(h[i+j][i : i+ size])
+                temp.append(h[i+j][j : j + size])
+            #print(temp)
+            print(np.matrix(temp))
+            ret.append(_unitary(np.matrix(temp)))
+            #print(ret[i])
+    return ret
+
+    
+
 
 #### debug ####
 def main():
