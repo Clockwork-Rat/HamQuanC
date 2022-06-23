@@ -42,6 +42,8 @@ def m_unitary(filename: str, size: int):
     ret = []
     #out_tmp = []
 
+    print("Split Hamiltonians:\n")
+
     for i in range(len(h)):
         for j in range(len(h[i])):
             if j + size < (len(h[i]) + 1) and i + size < (len(h[i]) + 1):

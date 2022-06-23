@@ -14,6 +14,7 @@ def main(args):
             decomp(u)
         else:
             u = m_unitary(args[0], int(args[1]))
+            print("\nUnitary Matrices:\n")
             for i in range(len(u)):
                 print(u[i])
     else:
