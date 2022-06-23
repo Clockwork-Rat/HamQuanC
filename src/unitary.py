@@ -12,7 +12,7 @@ _debug = False
 def unitary(filename: str):
     #load data in
     #h = np.genfromtxt(filename, delimeter=',')
-    h = np.loadtxt(file=filename, delimeter=",")
+    h = np.genfromtxt(filename, delimeter=",")
     print(h)
     #generate diaganol to check
     e = eig(h)[1].transpose()
@@ -40,16 +40,21 @@ def m_unitary(filename: str, size: int):
     #print(h)
     
     ret = []
-    out_tmp = []
+    #out_tmp = []
 
     for i in range(len(h)):
-        temp = []
-        if(i + size < len(h)):
-            for j in range(size):
+        for j in range(len(h[i])):
+            if j + size < (len(h[i]) + 1) and i + size < (len(h[i]) + 1):
+                temp = []
+                for k in range(size):
+                    temp.append(h[i+k][j : j + size])
                 #print(h[i+j][i : i+ size])
-                temp.append(h[i+j][j : j + size])
+                print(np.matrix(temp))
+                #temp.append(h[i+j][i : i + size])
+
+                
             #print(temp)
-            print(np.matrix(temp))
+            #print(np.matrix(temp))
             ret.append(_unitary(np.matrix(temp)))
             #print(ret[i])
     return ret
