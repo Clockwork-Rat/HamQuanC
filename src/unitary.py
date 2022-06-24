@@ -12,7 +12,7 @@ _debug = False
 def unitary(filename: str):
     #load data in
     #h = np.genfromtxt(filename, delimeter=',')
-    h = np.genfromtxt(filename, delimeter=",")
+    h = np.genfromtxt(filename, delimiter=",")
     print(h)
     #generate diaganol to check
     e = eig(h)[1].transpose()
@@ -43,15 +43,16 @@ def m_unitary(filename: str, size: int):
     #out_tmp = []
 
     print("Split Hamiltonians:\n")
-
+    
     for i in range(len(h)):
-        for j in range(len(h[i])):
-            if j + size < (len(h[i]) + 1) and i + size < (len(h[i]) + 1):
-                temp = []
-                for k in range(size):
-                    temp.append(h[i+k][j : j + size])
+        #for j in range(len(h[i])):
+            #if j + size < (len(h[i]) + 1) and i + size < (len(h[i]) + 1):
+        if i + size < (len(h[i]) + 1):
+            temp = []
+            for k in range(size):
+                temp.append(h[i+k][i : i + size])
                 #print(h[i+j][i : i+ size])
-                print(np.matrix(temp))
+            print(np.matrix(temp))
                 #temp.append(h[i+j][i : i + size])
 
                 
